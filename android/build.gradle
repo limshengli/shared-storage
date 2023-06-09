@@ -2,7 +2,7 @@ group 'io.alexrintt.sharedstorage'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.8.10'
+    ext.kotlin_version = '1.8.21'
     repositories {
         google()
         mavenCentral()
@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,6 +26,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'io.alexrintt.sharedstorage'
+
     compileSdkVersion 33
 
     sourceSets {
@@ -33,6 +35,16 @@ android {
     }
     defaultConfig {
         minSdkVersion 19
+        targetSdkVersion 33
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
@@ -44,7 +56,7 @@ dependencies {
      * Allow usage of `CoroutineScope` to run heavy
      * computation and queries outside the Main (UI) Thread
      */
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
 
     /**
      * `SimpleStorage` library
